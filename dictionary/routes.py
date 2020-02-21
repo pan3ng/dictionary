@@ -1,9 +1,12 @@
-from flask import render_template, url_for
+from flask import render_template, url_for, request
 from dictionary import app
+from dictionary.forms import SearchForm
 
-# from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 
-@app.route("/")
-@app.route("/home")
+@app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('dictionary.html')
+    form = SearchForm()
+    search = form.search.data
+
+    return render_template('dictionary.html', search=search, form=form)
+

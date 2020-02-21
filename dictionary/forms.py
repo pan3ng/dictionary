@@ -1,7 +1,8 @@
-# from flask_wtf import FlaskForm
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, Length, ValidationError
 
-# class PostForm(FlaskForm):
-    # print('This is the form')
-    # word = StringField('Title', validators=[DataRequired()])
-    # content = TextAreaField('Content', validators=[DataRequired()])
-    # submit = SubmitField('Post')
+
+class SearchForm(FlaskForm):
+    search = StringField('Search', validators=[DataRequired(), Length(min=2, max=20)])
+    submit = SubmitField('Submit')
